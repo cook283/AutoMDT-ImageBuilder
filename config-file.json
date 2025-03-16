@@ -1,0 +1,55 @@
+{
+    "Windows": {
+        "Edition": "Enterprise",
+        "ISOPath": "C:\\ImageBuilder\\Resources\\Windows.iso",
+        "UpdateSource": "https://catalog.update.microsoft.com"
+    },
+    "Office365": {
+        "ODTPath": "C:\\ImageBuilder\\Resources\\Office",
+        "ConfigXMLPath": "C:\\ImageBuilder\\Resources\\Office\\configuration.xml",
+        "Channel": "MonthlyEnterprise"
+    },
+    "Container": {
+        "BaseImage": "mcr.microsoft.com/windows/servercore:ltsc2022",
+        "Memory": "8GB",
+        "CPUs": 4
+    },
+    "ImageCapture": {
+        "TempLocation": "C:\\Temp\\WIMCapture",
+        "DestinationShare": "\\\\servername\\ImageStore",
+        "Credentials": {
+            "UseCredentials": true,
+            "Domain": "CONTOSO",
+            "Username": "ServiceAccount",
+            "Password": "SecurePasswordGoesHere"
+        }
+    },
+    "SCCM": {
+        "SitePath": "P01:",
+        "SiteCode": "P01",
+        "ServerName": "SCCMSERVER.contoso.com",
+        "OSImageName": "Windows 10 Enterprise",
+        "DistributionPointGroups": [
+            "All DPs",
+            "Regional DPs"
+        ]
+    },
+    "Notifications": {
+        "SmtpServer": "smtp.contoso.com",
+        "Port": 587,
+        "UseSsl": true,
+        "UseCredentials": true,
+        "Username": "notifications@contoso.com",
+        "Password": "SecurePasswordGoesHere",
+        "From": "imagebuilder@contoso.com",
+        "Recipients": [
+            "admin@contoso.com",
+            "itteam@contoso.com"
+        ]
+    },
+    "CustomizationScripts": [
+        "C:\\ImageBuilder\\Scripts\\Custom\\Hardening.ps1",
+        "C:\\ImageBuilder\\Scripts\\Custom\\InstallApplications.ps1",
+        "C:\\ImageBuilder\\Scripts\\Custom\\ConfigureSettings.ps1"
+    ]
+}
